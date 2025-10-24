@@ -1,0 +1,22 @@
+type: install
+id: ubuntu-vps-marketplace
+name: Ubuntu VPS
+version: 1.0
+baseUrl: https://raw.githubusercontent.com/reclaimhosting/reclaimcloud-vps-marketplace/master
+logo: ubuntu.png
+
+nodes:
+  - nodeType: ubuntu-vps
+    nodeGroup: cp
+    cloudlets: 16
+    displayName: Elastic VPS
+
+onInstall:
+  - cmd[cp]: |-
+      useradd -m -s /bin/bash jelastic
+      echo "jelastic ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/jelastic
+      chmod 0440 /etc/sudoers.d/jelastic
+    user: root
+
+success: |
+  Ubuntu VPS deployed successfully!
